@@ -47,21 +47,32 @@ void mastermind( istream&in, ostream&out)
 		in >> guess;
 		strcpy(ARRAY, guess.c_str());
 
-		while(!in.fail() && guesses < 6)
+		while(!in.fail() && guesses < 10)
 		{
 
 			for(int j=0; j < 5; j++)
 			{
 				if(ARRAY[j]==number[j])
 					blackPin++;
+				for(int k = 0; k<5; k++)
+				{
+					if(ARRAY[j] == number[k] && k != j)
+						whitePin++;
+				}
 			}
 			if(blackPin==5)
-				guesses=5;
+			{
+				guesses=10;
+				whitePin = 0;
+			}
 
 			out<<"Correct number and position: " << blackPin << endl;
-			out <<"Correct number, wrong position: " << whitePin << endl;		
-			out << "Please enter your next guess: ";
-			in >> guess;
+			out <<"Correct number, wrong position: " << whitePin << endl;
+			if(blackPin != 5)
+			{
+				out << "Please enter your next guess: ";
+				in >> guess;
+			}
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
 			blackPin=0;
