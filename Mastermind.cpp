@@ -38,6 +38,7 @@ void mastermind( istream&in, ostream&out)
 	int whitePin=0;
 	int tries = 0;
 	int none=0;
+	int track = 0;
 	int guesses=0;
 	char *ARRAY;
 	ARRAY = new char[5];
@@ -53,12 +54,19 @@ void mastermind( istream&in, ostream&out)
 
 			for(int j=0; j < 5; j++)
 			{
+				track = 1;
 				if(ARRAY[j]==number[j])
+				{
 					blackPin++;
+					track = 0;
+				}
 				for(int k = 0; k<5; k++)
 				{
-					if(ARRAY[j] == number[k] && k != j)
+					if(ARRAY[j] == number[k] && k != j && track != 0)
+					{
 						whitePin++;
+						track = 0;
+					}
 				}
 			}
 			if(blackPin==5)
