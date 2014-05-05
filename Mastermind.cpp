@@ -36,6 +36,7 @@ void mastermind( istream&in, ostream&out)
 	int i=0;
 	int blackPin=0;
 	int whitePin=0;
+	int tries = 0;
 	int none=0;
 	int guesses=0;
 	char *ARRAY;
@@ -64,6 +65,7 @@ void mastermind( istream&in, ostream&out)
 			{
 				guesses=10;
 				whitePin = 0;
+				tries++;
 			}
 
 			out<<"Correct number and position: " << blackPin << endl;
@@ -72,6 +74,7 @@ void mastermind( istream&in, ostream&out)
 			{
 				out << "Please enter your next guess: ";
 				in >> guess;
+				tries++;
 			}
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
@@ -81,6 +84,7 @@ void mastermind( istream&in, ostream&out)
 		
 
 		out << "Game Over!!!!!" << endl;
+		out << "It took you " << tries << " tries to guess the correct combination" << endl;
 
 	}
 }
