@@ -16,19 +16,15 @@ char *randomStrGen(int length)
 void mastermind( istream&in, ostream&out)
 {
 	char *number = randomStrGen(5);
-	for(int i=0; i<5; i++)
-	{
-		out << number[i];
-	}
+	//for(int i=0; i<5; i++)
+	//{
+	//	out << number[i];
+	//}
 	out << "Instructions:" << endl;
 	out << "Welcome to Mastermind! You are a code breaker whose objective is to crack the secret code ";
-	out << "created by the two best Unix students in the world! The code is cracked when you duplicate ";
-	out << "the exact colors and their positions of the secret code. To crack the code, you will make a guess ";
-	out << "to which the game will respond with helpful clues to aid you in guessing the secret code. ";
-	out << "If the game responds with a 1, you have guessed the right color and right position. ";
-	out << "If the game responds with a 0, you have guessed the right color but wrong position. ";
-	out << "From these clues you deduce aspects of the code and then make a new guess. ";
-
+	out << "created by Dr. Random. The code is comprised of 5 digits where each digit is between 0-6.";
+	out << "With each guess you make, Dr. Random will respond with helpful clues to aid you in deducing";
+	out << "the correct code. Good luck, and let the code breaking begin!" << endl;
 	out << "\n\nPlease type begin to begin the game!\n";
 	
 	string begin;
@@ -84,15 +80,27 @@ void mastermind( istream&in, ostream&out)
 				in >> guess;
 				tries++;
 			}
+			if(blackPin==5)
+			{
+				out << "It took you " << tries << " tries to guess the correct combination: ";
+				for(int i=0; i<5; i++)
+				{
+					out << number[i];
+				}
+				out << endl;	
+			}
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
 			blackPin=0;
 			whitePin=0;
 		}
 		
-
-		out << "Game Over!!!!!" << endl;
-		out << "It took you " << tries << " tries to guess the correct combination" << endl;
-
+		
+		out << "Game Over! Looks like you couldn't break the code: ";
+		for(int i=0; i<5; i++)
+		{
+			out << number[i];
+		}
+		out << endl;
 	}
 }
