@@ -25,9 +25,9 @@ void mastermind( istream&in, ostream&out)
 	out << "created by Dr. Random. The code is comprised of 5 digits where each digit is between 0-6.";
 	out << "With each guess you make, Dr. Random will respond with helpful clues to aid you in deducing ";
 	out << "the correct code. Good luck, and let the code breaking begin!" << endl;
-	out << "\n\nPlease type begin to begin the game!\n";
+	out << "\n\nPlease press ENTER to begin the game!\n";
 
-	string begin;
+	char begin;
 	string guess;
 	int i=0;
 	int blackPin=0;
@@ -38,7 +38,7 @@ void mastermind( istream&in, ostream&out)
 	char *ARRAY;
 	ARRAY = new char[5];
 	in >> begin;
-	if(begin=="begin")
+	if(begin=='\n')
 	{
 		out << "Please enter your first guess: ";
 		in >> guess;
@@ -71,7 +71,7 @@ void mastermind( istream&in, ostream&out)
 				tries++;
 			}
 			out<<"Correct number and position: " << blackPin << endl;
-			out <<"Correct number, wrong position: " << whitePin << endl;
+			out <<"Correct number, wrong position: " << whitePin << '\n';
 			if(blackPin != 5)
 			{
 				out << "Please enter your next guess: ";
