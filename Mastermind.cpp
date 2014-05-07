@@ -27,7 +27,7 @@ void mastermind( istream&in, ostream&out)
 	out << "the correct code. Good luck, and let the code breaking begin!" << endl;
 	out << "\n\nPlease press ENTER to begin the game!\n";
 
-	char begin;
+	string begin;
 	string guess;
 	int i=0;
 	int blackPin=0;
@@ -38,7 +38,7 @@ void mastermind( istream&in, ostream&out)
 	char *ARRAY;
 	ARRAY = new char[5];
 	in >> begin;
-	if(begin=='\n')
+	if(begin=="begin")
 	{
 		out << "Please enter your first guess: ";
 		in >> guess;
