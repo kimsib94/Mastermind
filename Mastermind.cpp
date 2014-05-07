@@ -80,28 +80,17 @@ void mastermind( istream&in, ostream&out)
 				in >> guess;
 				tries++;
 			}
-			if(blackPin==5)
-			{
-				out << "It took you " << tries << " tries to guess the correct combination: ";
-				for(int i=0; i<5; i++)
-				{
-					out << number[i];
-				}
-				out << endl;	
-			}
-			if(guesses==10 && blackPin!=5)
-			{
-				out << "Game Over! Looks like you couldn't break the code: ";
-				for(int i=0; i<5; i++)
-				{
-					out << number[i];
-				}
-				out << endl;
-			}
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
 			blackPin=0;
 			whitePin=0;
 		}
+		out <<"Game over!!"<<endl;
+		out << "It took you " << tries << " tries to guess the correct combination: ";
+		for(int i=0; i<5; i++)
+		{
+			out << number[i];
+		}
+		out << endl;
 	}
 }
