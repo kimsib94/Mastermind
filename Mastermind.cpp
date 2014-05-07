@@ -91,9 +91,9 @@ void mastermind( istream&in, ostream&out)
 				out << "It took you " << tries << " tries to guess the correct combination: ";
 				for(int i=0; i<5; i++)
 				{
-					out << number[i] << '\n';
+					out << number[i];
 				}
-				out << endl;
+				out << '\n';
 			}
 			blackPin=0;
 			whitePin=0;
