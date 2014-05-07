@@ -80,7 +80,7 @@ void mastermind( istream&in, ostream&out)
 			}
 			if(guesses==8 && blackPin!=5)
 			{
-				out << "Game over! You couldn't crack Dr. Random's secret code." <<endl;
+				out << "Game over! You couldn't crack Dr. Random's secret code.\n" <<endl;
 			}
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
@@ -91,7 +91,7 @@ void mastermind( istream&in, ostream&out)
 				out << "It took you " << tries << " tries to guess the correct combination: ";
 				for(int i=0; i<5; i++)
 				{
-					out << number[i];
+					out << number[i] << '\n';
 				}
 				out << endl;
 			}
