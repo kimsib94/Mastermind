@@ -23,7 +23,7 @@ void mastermind( istream&in, ostream&out)
 	out << "Instructions:" << endl;
 	out << "Welcome to Mastermind! You are a code breaker whose objective is to crack the secret code ";
 	out << "created by Dr. Random. The code is comprised of 5 digits where each digit is between 0-6.";
-	out << "With each guess you make, Dr. Random will respond with helpful clues to aid you in deducing";
+	out << "With each guess you make, Dr. Random will respond with helpful clues to aid you in deducing ";
 	out << "the correct code. Good luck, and let the code breaking begin!" << endl;
 	out << "\n\nPlease type begin to begin the game!\n";
 
