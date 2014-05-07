@@ -16,24 +16,23 @@ char *randomStrGen(int length)
 void mastermind( istream&in, ostream&out)
 {
 	char *number = randomStrGen(5);
-	//for(int i=0; i<5; i++)
-	//{
-	//	out << number[i];
-	//}
+	for(int i=0; i<5; i++)
+	{
+		out << number[i];
+	}
 	out << "Instructions:" << endl;
 	out << "Welcome to Mastermind! You are a code breaker whose objective is to crack the secret code ";
 	out << "created by Dr. Random. The code is comprised of 5 digits where each digit is between 0-6.";
 	out << "With each guess you make, Dr. Random will respond with helpful clues to aid you in deducing";
 	out << "the correct code. Good luck, and let the code breaking begin!" << endl;
 	out << "\n\nPlease type begin to begin the game!\n";
-	
+
 	string begin;
 	string guess;
 	int i=0;
 	int blackPin=0;
 	int whitePin=0;
 	int tries = 0;
-	int none=0;
 	int track = 0;
 	int guesses=0;
 	char *ARRAY;
@@ -45,7 +44,7 @@ void mastermind( istream&in, ostream&out)
 		in >> guess;
 		strcpy(ARRAY, guess.c_str());
 
-		while(!in.fail() && guesses < 10)
+		while(!in.fail() && guesses < 9)
 		{
 
 			for(int j=0; j < 5; j++)
@@ -71,7 +70,6 @@ void mastermind( istream&in, ostream&out)
 				whitePin = 0;
 				tries++;
 			}
-
 			out<<"Correct number and position: " << blackPin << endl;
 			out <<"Correct number, wrong position: " << whitePin << endl;
 			if(blackPin != 5)
@@ -80,17 +78,25 @@ void mastermind( istream&in, ostream&out)
 				in >> guess;
 				tries++;
 			}
+			if(guesses==8 && blackPin!=5)
+			{
+				out << "Game over! You couldn't crack Dr. Random's secret code." <<endl;
+			}
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
+			
+			if(blackPin==5)
+			{
+				out << "Game over!!!"<< endl;
+				out << "It took you " << tries << " tries to guess the correct combination: ";
+				for(int i=0; i<5; i++)
+				{
+					out << number[i];
+				}
+				out << endl;
+			}
 			blackPin=0;
 			whitePin=0;
-		}
-		out <<"Game over!!"<<endl;
-		out << "It took you " << tries << " tries to guess the correct combination: ";
-		for(int i=0; i<5; i++)
-		{
-			out << number[i];
-		}
-		out << endl;
+		}	
 	}
 }
