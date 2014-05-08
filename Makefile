@@ -1,6 +1,6 @@
 CC=c++
 
-all Mastermind clean
+all: Mastermind clean
 
 Mastermind: main1.o Mastermind.o
         $(CC) main1.o Mastermind.o -o Mastermind
