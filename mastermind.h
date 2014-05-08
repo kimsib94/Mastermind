@@ -2,7 +2,9 @@
 #include <iomanip>
 #include <string>
 #include <stdio.h>
+#include <cstring>
 
+using std::strcpy;
 using std::istream;
 using std::ostream;
 using std::string;
