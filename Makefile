@@ -1,4 +1,4 @@
-CC=c++ -std=c++11
+CC=g++ -std=c++11
 
 all: Mastermind clean
 
