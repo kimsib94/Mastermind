@@ -8,8 +8,8 @@ Mastermind: main1.o Mastermind.o
 main1.o: main1.cpp
 	$(CC) -c main1.cpp
         
-Mastermind.o: Mastermind.cpp Mastermind.h
-	$(CC) -c Mastermind.cpp Mastermind.h
+Mastermind.o: Mastermind.cpp mastermind.h
+	$(CC) -c Mastermind.cpp mastermind.h
         
 .PHONY: clean
 clean:
