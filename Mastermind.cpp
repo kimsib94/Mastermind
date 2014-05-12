@@ -117,6 +117,7 @@ void mastermind( istream&in, ostream&out)
 				if(playagain == 'y' || playagain == 'Y')
 				{
 					guesses = 0;
+					tries = 0;
 					number = randomStrGen(5);
 					out << "Please enter your first guess: ";
 					in >> guess;
@@ -136,6 +137,7 @@ void mastermind( istream&in, ostream&out)
 				if(playagain == 'y' || playagain == 'Y')
 				{
 					guesses = 0;
+					tries = 0;
 					number = randomStrGen(5);
 					out << "Please enter your first guess: ";
 					in >> guess;
