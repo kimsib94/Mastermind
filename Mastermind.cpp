@@ -27,7 +27,7 @@ char *randomStrGen(int length)
 // Main in-game method for Mastermind. 
 void mastermind( istream&in, ostream&out)
 {
-	
+
 	char *number = randomStrGen(5); //call to randomStrGen method with default length 5
 
 	//Instructions displayed at the start of the game
@@ -42,6 +42,7 @@ void mastermind( istream&in, ostream&out)
 	//Initialization and declaration of variables
 	string begin;
 	string guess;
+	char playagain;
 	int i=0;
 	int blackPin=0;
 	int whitePin=0;
@@ -50,8 +51,12 @@ void mastermind( istream&in, ostream&out)
 	int guesses=0;
 	char *ARRAY;
 	ARRAY = new char[5];
-	in >> begin; 
-
+	in >> begin;
+	while( begin != "begin")
+	{
+		out << "Please type begin to begin the game!\n";
+		in >> begin;
+	}
 	//Checks if user enters begin to start the game
 	if(begin=="begin")
 	{
@@ -80,7 +85,7 @@ void mastermind( istream&in, ostream&out)
 					}
 				}
 			}
-			if(blackPin==5)
+			if(blackPin==5 && guesses != 9)
 			{
 				guesses=10;
 				whitePin = 0;
@@ -94,15 +99,7 @@ void mastermind( istream&in, ostream&out)
 				in >> guess;
 				tries++;
 			}
-			if(guesses==8 && blackPin!=5)
-			{
-				out << "\nGame over! You couldn't crack Dr. Random's secret code: ";
-				for(int i=0; i<5; i++)
-				{
-					out << number[i];
-				}
-				out <<'\n';
-			}
+			
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
 
@@ -115,6 +112,37 @@ void mastermind( istream&in, ostream&out)
 					out << number[i];
 				}
 				out << '\n';
+				out << "To play again type y, or type n to quit: ";
+				in >> playagain;
+				if(playagain == 'y' || playagain == 'Y')
+				{
+					guesses = 0;
+					number = randomStrGen(5);
+					out << "Please enter your first guess: ";
+					in >> guess;
+					strcpy(ARRAY, guess.c_str());
+				}
+			}
+			if(guesses==9 && blackPin!=5)
+			{
+				out << "\nGame over! You couldn't crack Dr. Random's secret code: ";
+				for(int i=0; i<5; i++)
+				{
+					out << number[i];
+				}
+				out <<'\n';
+				out << "To play again type y, or type n to quit: ";
+				in >> playagain;
+				if(playagain == 'y' || playagain == 'Y')
+				{
+					guesses = 0;
+					number = randomStrGen(5);
+					out << "Please enter your first guess: ";
+					in >> guess;
+					strcpy(ARRAY, guess.c_str());
+				}
+
+
 			}
 			blackPin=0;
 			whitePin=0;
