@@ -29,10 +29,6 @@ void mastermind( istream&in, ostream&out)
 {
 	
 	char *number = randomStrGen(5); //call to randomStrGen method with default length 5
-	//for(int i=0; i<5; i++)
-	//{
-//		out << number[i];
-	//}
 
 	//Instructions displayed at the start of the game
 	//User must type "begin" to start the game
