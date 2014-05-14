@@ -9,15 +9,16 @@
 
 #include "mastermind.h"
 
-// Generates a random string of numbers used as the random numbers
+// randomStrGen generates a random string of numbers used as the random numbers
 // in the game. Takes length as a parameter and returns the char array
-// of numbers.
+// of numbers. Assumes length is a positive int.
 char *randomStrGen(int length)
 {
 	static string charset="0123456";
 	char *charArray;
 	charArray = new char[length]; //allocation for char array length
 	srand(time(NULL));
+	
 	for(int i=0; i < 5; i++)
 		charArray[i]=charset[rand() % charset.length()];
 
@@ -51,12 +52,14 @@ void mastermind( istream&in, ostream&out)
 	int guesses=0;
 	char *ARRAY;
 	ARRAY = new char[5];
-	in >> begin;
+	
+	in >> begin; //gets uers input for start game
 	while( begin != "begin")
 	{
 		out << "Please type begin to begin the game!\n";
 		in >> begin;
 	}
+	
 	//Checks if user enters begin to start the game
 	if(begin=="begin")
 	{
@@ -93,6 +96,7 @@ void mastermind( istream&in, ostream&out)
 			}
 			out<<"Correct number and position: " << blackPin << endl;
 			out <<"Correct number, wrong position: " << whitePin <<endl;
+			
 			if(blackPin != 5)
 			{
 				out << "Please enter your next guess: ";
@@ -103,39 +107,51 @@ void mastermind( istream&in, ostream&out)
 			strcpy(ARRAY, guess.c_str());
 			guesses++;
 
+			//if user does guess code
 			if(blackPin==5)
 			{
 				out << "\nGame over!!!"<< endl;
 				out << "It took you " << tries << " tries to guess the correct combination: ";
+				
 				for(int i=0; i<5; i++)
 				{
 					out << number[i];
 				}
+				
+				//if user wants to play again...
 				out << '\n';
 				out << "To play again type y, or type n to quit: ";
+				
 				in >> playagain;
 				if(playagain == 'y' || playagain == 'Y')
 				{
+					//reset guesses and tries
 					guesses = 0;
 					tries = 0;
+					//new random numbers
 					number = randomStrGen(5);
 					out << "Please enter your first guess: ";
 					in >> guess;
 					strcpy(ARRAY, guess.c_str());
 				}
 			}
+			
+			//if user does not guess code
 			if(guesses==9 && blackPin!=5)
 			{
-				out << "\nGame over! You couldn't crack Dr. Random's secret code: ";
+				out << "\nGame over! You couldn't crack Dr. Random's secret code: "; //game over message
 				for(int i=0; i<5; i++)
 				{
 					out << number[i];
 				}
+				
 				out <<'\n';
 				out << "To play again type y, or type n to quit: ";
+				
 				in >> playagain;
 				if(playagain == 'y' || playagain == 'Y')
 				{
+					//reset geusses and tries
 					guesses = 0;
 					tries = 0;
 					number = randomStrGen(5);
